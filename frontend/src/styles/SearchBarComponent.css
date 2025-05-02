@@ -1,0 +1,41 @@
+.search-section {
+    background-color: #7c7052;
+    max-width: 100%;
+    padding: 0px;
+}
+
+h3 {
+    color: white;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+form {
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+input {
+    padding: 5px 30px;
+    border-radius: 10px;
+    color: #7c7052;
+}
+
+input[type='text'] {
+    width: 300px;
+}
+
+.button-search {
+    color: white;
+    background-color: #77d4b6;
+    border: none;
+    padding: 6px 40px;
+    border-radius: 10px;
+    margin-left: 5px;
+    transition: 0.5s all ease;
+}
+
+.button-search:hover {
+    background-color: #8cc2a0;
+}
