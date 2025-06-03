@@ -3,6 +3,13 @@ import { Routes, Route } from "react-router-dom";
 import { AdminMenuComponent } from "../../components/admin/AdminMenuComponent";
 import { AddProductComponent } from "../../components/admin/AddProductComponent";
 import { ListProductComponent } from "../../components/admin/ListProductComponent";
+import { AddCategoryComponent } from '../../components/admin/AddCategoryComponent';
+import { EditProductComponent } from "../../components/admin/EditProductComponent";
+import { AddFeatureComponent } from "../../components/admin/AddFeatureComponent";
+import { ListFeatureComponent } from "../../components/admin/ListFeatureComponent";
+import { EditFeatureComponent } from '../../components/admin/EditFeatureComponent';
+import { AdminUserListComponent } from "../../components/admin/AdminUserListComponent";
+
 import "../../styles/admin/Admin.css";
 
 export const AdminPage = () => {
@@ -34,6 +41,12 @@ export const AdminPage = () => {
         <Routes>
           <Route path="agregar-producto" element={<AddProductComponent />} />
           <Route path="listar-productos" element={<ListProductComponent />} />
+          <Route path="agregar-categoria" element={<AddCategoryComponent />} />
+          <Route path="editar-producto/:id" element={<EditProductComponent />} />
+          <Route path="agregar-caracteristicas" element={<AddFeatureComponent />} />
+          <Route path="administrar-caracteristicas" element={<ListFeatureComponent />} />
+          <Route path="editar-caracteristica/:id" element={<EditFeatureComponent />} />
+          <Route path="administrar-usuarios" element={<AdminUserListComponent />} />
           <Route path="*" element={<h3 className="admin-comment">Seleccione una opción del menú</h3>} />
         </Routes>
       </div>

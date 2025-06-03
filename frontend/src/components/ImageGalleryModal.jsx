@@ -8,7 +8,7 @@ export const ImageGalleryModal = ({ imageUrls, onClose }) => {
             <button className="close-button" onClick={onClose}>X</button>
             <div className="image-grid">
                 {imageUrls.map((image, index) => (
-                    <img key={index} src={`http://localhost:8080/${image}`} alt={`Imagen ${index + 1}`} />
+                    <img key={index} src={`http://localhost:8080${image}`} alt={`Imagen ${index + 1}`} />
                 ))}
             </div>
         </div>

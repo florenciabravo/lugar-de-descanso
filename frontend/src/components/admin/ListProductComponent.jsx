@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useFetch } from '../../hook/admin/useFetch';
 
 export const ListProductComponent = () => {
   const [products, setProducts] = useState([]);
   const { fetchData, data, loading, error } = useFetch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts();
@@ -39,7 +41,10 @@ export const ListProductComponent = () => {
               <td>{product.id}</td>
               <td>{product.name}</td>
               <td>
-                <button className="delete-btn" onClick={() => handleDelete(product.id)}>Eliminar</button>
+                <div className="button-group">
+                  <button className="delete-btn" onClick={() => handleDelete(product.id)}>Eliminar</button>
+                  <button className="edit-btn" onClick={() => navigate(`/administracion/editar-producto/${product.id}`)}>Editar</button>
+                </div>
               </td>
             </tr>
           ))}

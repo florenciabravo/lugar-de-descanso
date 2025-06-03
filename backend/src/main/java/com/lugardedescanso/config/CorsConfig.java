@@ -16,8 +16,9 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:5173") //Permitir solo solicitudes desde URL del frontend
-                        .allowedMethods("GET", "POST", "PUT", "DELETE") // Métodos HTTP permitidos
-                        .allowedHeaders("*"); // Permitir todas las cabeceras
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos HTTP permitidos
+                        .allowedHeaders("*") // Permitir todas las cabeceras
+                        .allowCredentials(true);
             }
 
             @Override
@@ -25,6 +26,12 @@ public class CorsConfig {
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
                 registry.addResourceHandler("/uploads/**")
                         .addResourceLocations("file:./uploads/");
+
+                registry.addResourceHandler("/images/categories/**")
+                        .addResourceLocations("file:./uploads/categories/");
+
+                registry.addResourceHandler("/images/features/**")
+                        .addResourceLocations("file:./uploads/features/");
             }
         };
     }

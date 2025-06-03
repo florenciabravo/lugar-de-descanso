@@ -1,5 +1,9 @@
+import { LoginComponent } from "../components/LoginComponent"
+
 export const IniciarSesionPage = () => {
     return (
-        <div>IniciarSesionPage</div>
+        <>
+            <LoginComponent />
+        </>
     )
 }

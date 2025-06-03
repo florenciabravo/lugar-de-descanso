@@ -24,7 +24,7 @@
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 15px;
+  gap: 10px;
 }
 
 .admin-menu li {
@@ -33,9 +33,10 @@
 
 .admin-menu a {
   color: var(--color-blanco);
+  display: flex;
   text-decoration: none;
   font-weight: bold;
-  padding: 8px 12px;
+  padding: 0px 10px 0px 25px;
   background-color: var(--color-aqua);
   border-radius: 10px;
   border: none;
@@ -103,6 +104,30 @@
   color: var(--color-blanco);
 }
 
+.edit-btn {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--color-tierra);
+  font-weight: bold;
+  padding: 6px 14px;
+  border: 2px solid var(--color-tierra);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  width: fit-content;
+}
+
+.edit-btn:hover {
+  background-color: var(--color-tierra);
+  color: var(--color-blanco);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px; 
+}
+
 /* AddProduct form */
 
 form div {
@@ -116,7 +141,7 @@ label {
 }
 
 input[type="text"],
-textarea,
+textarea,select,option
 input[type="file"] {
   width: 100%;
   padding: 10px;
@@ -167,4 +192,31 @@ button[type="submit"] {
   padding-left: 20px;
   color: var(--color-tierra);
   font-size: 0.9rem;
+}
+
+/* Features */
+
+.admin-button {
+  color: var(--color-blanco);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  background-color: var(--color-aqua);
+  border-radius: 10px;
+  border: none;
+  transition: 0.5s all ease;
+  margin-bottom: 10px;
+}
+
+.admin-button:hover {
+  background-color: #8cc2a0;
+}
+
+.feature-label {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  justify-content: center;
 }

@@ -16,15 +16,21 @@ export const useFetch = () => {
         setState({ data: null, isLoading: true, error: null });
 
         try {
+            const token = localStorage.getItem("token");
 
             const options = {
                 method: method,
-                headers: bodyData instanceof FormData ? {} : {
-                    'Content-type': 'application/json; charset=UTF-8',
+                headers: {
+                    ...(bodyData instanceof FormData 
+                            ? {} 
+                            : {'Content-type': 'application/json; charset=UTF-8'}),
+                    ...(token && { Authorization: `Bearer ${token}` }),
                 },
-                body: method == 'GET' || method == 'DELETE' ? null 
-                    : bodyData instanceof FormData ? bodyData 
-                    : JSON.stringify(bodyData)
+                body: method == 'GET' || method == 'DELETE' 
+                    ? null 
+                    : bodyData instanceof FormData 
+                        ? bodyData 
+                        : JSON.stringify(bodyData),
             }
 
             const res = await fetch(url, options)
@@ -33,7 +39,7 @@ export const useFetch = () => {
                 : null;
 
             if (!res.ok) {
-                throw new Error(data?.error || "Ocurrio un error inesperadooo");
+                throw new Error(data?.error || data?.message || "Ocurrio un error inesperadooo");
             }
             setState({ data, isLoading: false, error: null })
             return data;

@@ -6,6 +6,7 @@ import { HomePage } from "./pages/HomePage"
 import { FooterComponent } from "./components/FooterComponent"
 import { AdminPage } from "./pages/admin/AdminPage"
 import { ProductDetailComponent } from "./components/ProductDetailComponent"
+import { PrivateRouteAdmin } from "./components/routes/PrivateRouteAdmin";
 
 export const App = () => {
 
@@ -17,7 +18,12 @@ export const App = () => {
                     <Route path="/" element={<HomePage />}></Route>
                     <Route path="/CrearCuenta" element={<CrearCuentaPage />}></Route>
                     <Route path="/IniciarSesion" element={<IniciarSesionPage />}></Route>
-                    <Route path="/Administracion/*" element={<AdminPage />}></Route>
+                    <Route path="/Administracion/*" element={
+                        <PrivateRouteAdmin>
+                            <AdminPage />
+                            </PrivateRouteAdmin>
+                    }>
+                    </Route>
                     <Route path="/product/:id" element={<ProductDetailComponent />}></Route>
                     <Route path="/*" element={<Navigate to='/' />}> </Route>
                 </Routes>

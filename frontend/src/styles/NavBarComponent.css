@@ -17,3 +17,59 @@
     color: #77d4b6;
     font-weight: bold;
 }
+
+.avatar {
+    background-color: #77d4b6;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    font-size: 1rem;
+}
+
+.username {
+    color: #7c7052;
+    font-weight: bold;
+}
+
+.user-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+.user-nav .avatar {
+    margin: 0 auto 5px auto;
+}
+
+.user-nav .username {
+    margin-bottom: 5px;
+}
+
+@media (min-width: 768px) {
+    .user-nav {
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 0;
+        text-align: right;
+    }
+
+    .user-nav .avatar {
+        margin-right: 8px;
+    }
+
+    .user-nav .username {
+        margin-right: 10px;
+        margin-bottom: 0;
+    }
+}

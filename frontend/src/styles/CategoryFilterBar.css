@@ -1,0 +1,53 @@
+.category-buttons-container {
+    overflow-x: auto; 
+    padding: 10px 0; 
+}
+
+.category-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+}
+
+.category-button {
+    flex: 0 0 auto;
+    border: none;
+    background: #f0f0f0;
+    border-radius: 12px;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    min-width: 150px;
+}
+
+.category-button.active {
+    background-color: #7c7052;
+    color: white;
+    border-color: #7c7052;
+}
+
+.category-button input {
+    display: none;
+}
+
+.category-image {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+}
+
+.filter-info {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.clear-button {
+    background: none;
+    border: none;
+    color: #77d4b6;
+    cursor: pointer;
+    font-weight: bold;
+}

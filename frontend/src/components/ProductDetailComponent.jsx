@@ -26,6 +26,10 @@ export const ProductDetailComponent = () => {
         return <p>Cargando producto...</p>;
     }
 
+    const handleGoBack = () => {
+        navigate('/'); // Navega de vuelta a la página principal
+    };
+
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
     };
@@ -34,7 +38,7 @@ export const ProductDetailComponent = () => {
         <div className="product-detail">
             <div className="product-header">
                 <h1 className="product-title">{product.name}</h1>
-                <button className="back-button" onClick={() => navigate(-1)}>← Volver</button>
+                <button className="back-button" onClick={handleGoBack}>← Volver</button>
             </div>
 
             <p className="product-description">{product.description}</p>
@@ -43,11 +47,11 @@ export const ProductDetailComponent = () => {
                 <>
                     <div className="image-gallery">
                         <div className="main-image">
-                            <img src={`http://localhost:8080/${product.imageUrls[0]}`} alt="Imagen Principal" />
+                            <img src={`http://localhost:8080${product.imageUrls[0]}`} alt="Imagen Principal" />
                         </div>
                         <div className="grid-images">
                             {product.imageUrls.slice(1, 5).map((image, index) => (
-                                <img key={index} src={`http://localhost:8080/${image}`} alt={`Imagen ${index + 2}`} />
+                                <img key={index} src={`http://localhost:8080${image}`} alt={`Imagen ${index + 2}`} />
                             ))}
                         </div>
                     </div>
@@ -57,6 +61,25 @@ export const ProductDetailComponent = () => {
                 </>
             )}
             {isModalOpen && <ImageGalleryModal imageUrls={product.imageUrls} onClose={toggleModal} />}
+
+            {product.features && product.features.length > 0 && (
+                <div className="product-features">
+                    <h2 className="features-title">Características</h2>
+                    <ul className="features-list">
+                        {product.features.map((feature) => (
+                            <li key={feature.id} className="feature-item">
+                                <img
+                                    src={`http://localhost:8080${feature.iconUrl}`}
+                                    alt={feature.name}
+                                    className="feature-icon"
+                                />
+                                <span>{feature.name}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+
         </div>
     );
 };

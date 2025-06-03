@@ -1,0 +1,44 @@
+.main-container {
+    margin: 1rem auto;
+    font-family: Arial, sans-serif;
+    color: #7c7052;
+}
+
+.register-container {
+    background-color: #F8F9FA;
+    padding: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--color-tierra);
+  border-radius: 5px;
+  background-color: var(--color-blanco);
+  color: var(--color-tierra);
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+input::placeholder {
+    color: #7c7052;
+}
+
+/*  resend email */
+.resend-button {
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #7c7052;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .resend-button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  

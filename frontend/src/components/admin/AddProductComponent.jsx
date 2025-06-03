@@ -11,14 +11,57 @@ export const AddProductComponent = () => {
     const [successMessage, setSuccessMessage] = useState(null)
     const fileInputRef = useRef(null);
 
+    const [categories, setCategories] = useState([]);
+    const [selectedCategoryId, setSelectedCategoryId] = useState("");
+
+    const [features, setFeatures] = useState([]);
+    const [selectedFeatures, setSelectedFeatures] = useState([]);
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/categories");
+                const data = await response.json();
+                setCategories(data);
+            } catch (error) {
+                console.error("Error al cargar categorías", error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
+
+    useEffect(() => {
+        const fetchFeatures = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/features");
+                const data = await response.json();
+                setFeatures(data);
+            } catch (error) {
+                console.error("Error al cargar características", error);
+            }
+        };
+
+        fetchFeatures();
+    }, []);
+
     const handleFileChange = (e) => {
         const selectedFiles = [...e.target.files];
         setImages(selectedFiles);
-    
+
         if (selectedFiles.length > 0) {
             setLocalError(null); // Limpiar el error si se seleccionaron imágenes
         }
-    };    
+    };
+
+    const handleFeatureChange = (e) => {
+        const value = parseInt(e.target.value);
+        if (e.target.checked) {
+            setSelectedFeatures([...selectedFeatures, value]);
+        } else {
+            setSelectedFeatures(selectedFeatures.filter(id => id !== value));
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,14 +73,23 @@ export const AddProductComponent = () => {
         if (images.length === 0) {
             setLocalError("Debes seleccionar al menos una imagen.");
             return;
-        }      
+        }
+
+        if (!name || !description || !selectedCategoryId || selectedFeatures.length === 0) {
+            alert("Todos los campos, incluyendo al menos una característica, son obligatorios");
+            return;
+        }
 
         //Construir FormData para enviar archivos
         const formData = new FormData();
         formData.append('name', name);
         formData.append('description', description);
+        formData.append('categoryId', selectedCategoryId);
         images.forEach((Image) => formData.append('images', Image));
-
+        selectedFeatures.forEach(featureId => {
+            formData.append("features", featureId);
+        });
+       
         //Llamar al fetchData con POST
         const result = await fetchData("http://localhost:8080/products", "POST", formData);
 
@@ -47,7 +99,9 @@ export const AddProductComponent = () => {
             //Resetear formulario
             setName("");
             setDescription("");
+            setSelectedCategoryId("");
             setImages([]);
+            setSelectedFeatures([]);
             if (fileInputRef.current) {
                 fileInputRef.current.value = "";
             }
@@ -72,7 +126,7 @@ export const AddProductComponent = () => {
             <h2>Agregar Producto</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Nombre</label>
+                    <label>Nombre:</label>
                     <input
                         ref={focusRef}
                         type="text"
@@ -82,15 +136,33 @@ export const AddProductComponent = () => {
                     />
                 </div>
                 <div>
-                    <label>Descripcion</label>
+                    <label>Descripcion:</label>
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         required
                     />
                 </div>
+
+                <div>
+                    <label>Categoría:</label>
+                    <select
+                        className="category-select"
+                        value={selectedCategoryId}
+                        onChange={(e) => setSelectedCategoryId(e.target.value)}
+                        required
+                    >
+                        <option value="">Seleccionar categoría</option>
+                        {categories.map((category) => (
+                            <option key={category.id} value={category.id}>
+                                {category.title}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
                 <div className="custom-file-input-wrapper">
-                    <label className="file-label">Imagenes</label>
+                    <label className="file-label">Imagenes:</label>
 
                     <label className="custom-file-label">Seleccionar Imagenes
                         <input
@@ -118,6 +190,23 @@ export const AddProductComponent = () => {
                             </ul>
                         </div>
                     )}
+                </div>
+
+                <div>
+                    <label>Características:</label>
+                    <div className="features-checkboxes">
+                        {features.map((feature) => (
+                            <label key={feature.id} className="feature-label">
+                                <input
+                                    type="checkbox"
+                                    value={feature.id}
+                                    checked={selectedFeatures.includes(feature.id)}
+                                    onChange={handleFeatureChange}
+                                />
+                                {feature.name}
+                            </label>
+                        ))}
+                    </div>
                 </div>
 
                 <button type="submit" disabled={isLoading}>
