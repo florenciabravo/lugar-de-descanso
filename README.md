@@ -99,11 +99,15 @@ Una vez que hayas seguido estos pasos, podrás acceder a la aplicación en tu na
 
 ### ✅ Planificación y ejecución de pruebas funcionales
 
-Durante el Sprint 1 se realizó un proceso formal de validación funcional mediante:
+Durante el Sprint 1 y 2 se realizó un proceso formal de validación funcional mediante:
 
 - [Plan de Casos de Prueba - Sprint 1](/docs/Plan-de-Casos-de-Prueba-Sprint1.pdf)
 
 - [Ejecución de Casos de Prueba - Sprint 1](/docs/Ejecucion-de-Casos-de-Prueba-Sprint1.pdf)
+
+- [Plan de Casos de Prueba - Sprint 2](/docs/Plan-de-Casos-de-Prueba-Sprint2.pdf)
+
+- [Ejecución de Casos de Prueba - Sprint 2](/docs/Ejecucion-de-Casos-de-Prueba-Sprint2.pdf)
 
 Los documentos detallan los escenarios validados manualmente en base a las historias de usuario y criterios de aceptación definidos.
 
@@ -125,6 +129,53 @@ El proyecto incluye un conjunto de **pruebas de integración en el backend** des
 -  Eliminar un producto existente y verificar que fue eliminado.
 
 Estas pruebas aseguran la estabilidad y confiabilidad del sistema en los flujos CRUD principales del módulo de productos.
+
+---
+
+## 🚀 Funcionalidades por Sprint
+
+### 🧱 Sprint 1 - Estructura básica y funcionalidades iniciales
+
+Durante el Sprint 1 se desarrollaron las siguientes historias de usuario:
+
+- #1: Colocar encabezado
+- #2: Definir el cuerpo del sitio
+- #3: Registrar producto
+- #4: Visualizar productos aleatorios en el Home  
+- #5: Visualizar detalle de producto 
+- #6: Visualizar galería de imágenes
+- #7: Colocar pie de página
+- #8: Paginar productos
+- #9: Panel de administración
+- #10: Listar productos en el panel de administración  
+- #11: Eliminar producto desde el panel  
+
+Se sentaron las bases del diseño responsive, navegación y estructura visual (header, body, footer), y se conectó el frontend con el backend mediante API REST. También se realizaron pruebas manuales y tests de integración para validar los endpoints relacionados a productos.
+
+---
+
+### 🚀 Sprint 2 - Nuevas funcionalidades avanzadas
+
+Durante el Sprint 2 se implementaron las siguientes historias de usuario:
+
+- #12: Categorizar productos  
+- #13: Registrar usuario  
+- #14: Identificar usuario (login)  
+- #15: Cerrar sesión  
+- #16: Identificar administrador  
+- #17: Administrar características de productos  
+- #18: Visualizar características del producto  
+- #19: Notificación por correo tras registro  
+- #20: Crear sección visual de categorías  
+- #21: Agregar nueva categoría  
+
+Cada funcionalidad fue integrada, probada y validada con sus respectivos casos de prueba funcionales y pruebas de integración.
+
+---
+
+## 🔗 Demo en vivo
+
+Próximamente en Netlify
 
 ---
 
