@@ -4,6 +4,7 @@ import { AdminMenuComponent } from "../../components/admin/AdminMenuComponent";
 import { AddProductComponent } from "../../components/admin/AddProductComponent";
 import { ListProductComponent } from "../../components/admin/ListProductComponent";
 import { AddCategoryComponent } from '../../components/admin/AddCategoryComponent';
+import { ListCategoryComponent } from "../../components/admin/ListCategoryComponent";
 import { EditProductComponent } from "../../components/admin/EditProductComponent";
 import { AddFeatureComponent } from "../../components/admin/AddFeatureComponent";
 import { ListFeatureComponent } from "../../components/admin/ListFeatureComponent";
@@ -42,6 +43,7 @@ export const AdminPage = () => {
           <Route path="agregar-producto" element={<AddProductComponent />} />
           <Route path="listar-productos" element={<ListProductComponent />} />
           <Route path="agregar-categoria" element={<AddCategoryComponent />} />
+          <Route path="administrar-categoria" element={<ListCategoryComponent />} />
           <Route path="editar-producto/:id" element={<EditProductComponent />} />
           <Route path="agregar-caracteristicas" element={<AddFeatureComponent />} />
           <Route path="administrar-caracteristicas" element={<ListFeatureComponent />} />

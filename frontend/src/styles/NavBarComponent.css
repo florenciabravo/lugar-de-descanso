@@ -56,6 +56,13 @@
 }
 
 @media (min-width: 768px) {
+    .buttons-fav {
+        margin-right: 5px;
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 768px) {
     .user-nav {
         flex-direction: row;
         justify-content: flex-end;

@@ -2,6 +2,7 @@ package com.lugardedescanso.service.impl;
 
 import com.lugardedescanso.entity.Category;
 import com.lugardedescanso.repository.CategoryRepository;
+import com.lugardedescanso.repository.ProductRepository;
 import com.lugardedescanso.service.CategoryService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,13 +19,15 @@ import java.util.UUID;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
 
     // Ruta configurable
     @Value("${category.images.upload-dir:uploads/categories}")
     private String uploadDir;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, ProductRepository productRepository) {
         this.categoryRepository = categoryRepository;
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -57,5 +60,19 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
+    }
+
+    @Override
+    public void deleteCategory(Long id) {
+        if (!categoryRepository.existsById(id)) {
+            throw new RuntimeException("Categoría con ID " + id + " no encontrada.");
+        }
+
+        boolean hasProducts = productRepository.existsByCategoryId(id);
+        if (hasProducts) {
+            throw new IllegalStateException("No se puede eliminar la categoría porque tiene productos asociados.");
+        }
+
+        categoryRepository.deleteById(id);
     }
 }

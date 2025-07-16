@@ -7,6 +7,7 @@ import { FooterComponent } from "./components/FooterComponent"
 import { AdminPage } from "./pages/admin/AdminPage"
 import { ProductDetailComponent } from "./components/ProductDetailComponent"
 import { PrivateRouteAdmin } from "./components/routes/PrivateRouteAdmin";
+import { FavoritesPage } from "./pages/FavoritesPage";
 
 export const App = () => {
 
@@ -18,6 +19,7 @@ export const App = () => {
                     <Route path="/" element={<HomePage />}></Route>
                     <Route path="/CrearCuenta" element={<CrearCuentaPage />}></Route>
                     <Route path="/IniciarSesion" element={<IniciarSesionPage />}></Route>
+                    <Route path="/Favoritos" element={<FavoritesPage />} />
                     <Route path="/Administracion/*" element={
                         <PrivateRouteAdmin>
                             <AdminPage />

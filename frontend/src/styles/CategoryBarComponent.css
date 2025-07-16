@@ -20,7 +20,8 @@
 
 .product-card img {
     width: 100%;
-    height: auto;
+    height: 35vw;
+    object-fit: cover;
     border-radius: 8px;
 }
 
@@ -72,4 +73,35 @@
     .pagination span {
         font-size: 14px;
     }
+}
+
+/* Favorites */
+.product-image-container {
+    position: relative;
+}
+
+.favorite-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.favorite-button:hover {
+    transform: scale(1.2);
+}
+
+.favorite-button.favorited {
+    /*  color: red; */
+    color: #77d4b6;
+}
+
+.product-rating {
+    font-size: 0.9rem;
+    color: #7c7052;
+    margin-top: 5px;
 }

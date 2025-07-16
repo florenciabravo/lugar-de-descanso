@@ -1,5 +1,6 @@
 package com.lugardedescanso.controller;
 
+import com.lugardedescanso.dto.ProductWithRatingDTO;
 import com.lugardedescanso.entity.Product;
 import com.lugardedescanso.service.ProductService;
 import org.springframework.http.HttpStatus;
@@ -26,10 +27,11 @@ public class ProductController {
             @RequestParam("description") String description,
             @RequestParam("categoryId") Long categoryId,
             @RequestParam("features") List<Long> featureIds,
-            @RequestParam("images") List<MultipartFile> images) {
+            @RequestParam("images") List<MultipartFile> images,
+            @RequestParam("locationId") Long locationId) {
 
         try {
-            Product product = productService.createProduct(name, description, categoryId, featureIds, images);
+            Product product = productService.createProduct(name, description, categoryId, featureIds, images, locationId);
 
             Map<String, Object> response = new HashMap<>();
             response.put("message", "Producto agregado exitosamente");
@@ -71,11 +73,6 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
-    @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
@@ -89,14 +86,16 @@ public class ProductController {
             @RequestParam("description") String description,
             @RequestParam("categoryId") Long categoryId,
             @RequestParam("features") List<Long> featureIds,
-            @RequestParam(value = "images", required = false) List<MultipartFile> images) {
+            @RequestParam(value = "images", required = false) List<MultipartFile> images,
+            @RequestParam("locationId") Long locationId) {
 
         try {
             List<String> imageUrls = images != null && !images.isEmpty()
                     ? productService.saveImages(images)
                     : null;
 
-            Product updatedProduct = productService.updateProduct(id, name, description, categoryId, featureIds,imageUrls);
+            Product updatedProduct = productService.updateProduct(
+                    id, name, description, categoryId, featureIds, imageUrls, locationId);
 
             Map<String, Object> response = new HashMap<>();
             response.put("message", "Producto actualizado exitosamente");
@@ -111,6 +110,21 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(Map.of("error", e.getMessage()));
         }
+    }
+
+    @GetMapping
+    public List<ProductWithRatingDTO> getAllProducts() {
+        return productService.getAllProductsWithRating();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ProductWithRatingDTO>> searchProducts(
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) String checkIn,
+            @RequestParam(required = false) String checkOut) {
+
+        List<ProductWithRatingDTO> results = productService.searchAvailableProductsWithRating(city, checkIn, checkOut);
+        return ResponseEntity.ok(results);
     }
 
 }

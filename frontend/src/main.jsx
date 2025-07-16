@@ -4,15 +4,18 @@ import './index.css'
 import { App } from './App'
 import { BrowserRouter } from 'react-router-dom'
 import { RandomProductProvider } from './context/RandomProductContext'
-import { AuthProvider } from './context/AuthContext' //
+import { AuthProvider } from './context/AuthContext'
+import { FavoriteProvider } from './context/FavoriteContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <RandomProductProvider>
-          <App />
-        </RandomProductProvider>
+          <RandomProductProvider>
+            <FavoriteProvider>
+              <App />
+            </FavoriteProvider>
+          </RandomProductProvider>
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>

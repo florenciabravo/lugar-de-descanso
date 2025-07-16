@@ -1,0 +1,39 @@
+.product-policy-block {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #f8f9fA;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.policy-title {
+    font-size: 1.5rem;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+}
+
+.policy-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.policy-item {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.policy-item-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: white;
+    background-color: #77d4b6;
+}
+
+.policy-item-description {
+    font-size: 1rem;
+}

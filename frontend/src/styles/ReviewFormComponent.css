@@ -1,0 +1,42 @@
+.review-form {
+    margin-top: 2rem;
+  }
+  
+  .star-rating span {
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  .filled-star {
+    color: gold;
+  }
+  
+  .empty-star {
+    color: lightgray;
+  }
+  
+  .review-form textarea.review-textarea {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    color: #7c7052;
+  }
+
+  .review-form textarea.review-textarea::placeholder {
+    color: #7c7052; 
+  }
+  
+  .review-form button.review-submit-button {
+    margin-top: 1rem;
+    background-color: #77d4b6;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+  
+  .error {
+    color: red;
+  }
+  

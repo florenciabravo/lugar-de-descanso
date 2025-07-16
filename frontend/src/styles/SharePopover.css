@@ -1,0 +1,137 @@
+.popover-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popover {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.popover-title {
+    font-size: 1.2rem;
+}
+
+.popover-header {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: none;
+    padding-bottom: 8px;
+    border-bottom: none;
+}
+
+.popover-img {
+    max-width: 80px;
+    border-radius: 6px;
+}
+
+.popover-description {
+    flex: 1;
+    text-align: left;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.popover textarea {
+    width: 100%;
+    min-height: 60px;
+    margin: 8px 0 0 0;
+    padding: 8px;
+    resize: vertical;
+    border-radius: 6px;
+    border: 1px solid #7c7052;
+}
+
+.popover textarea::placeholder {
+    color: #7c7052;
+}
+
+.popover button {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px 14px;
+    border: 2px solid #7c7052;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #7c7052;
+    font-size: 0.9rem;
+}
+
+.popover button.popover-close {
+    color: white;
+    background: #77d4b6;
+    border: none;
+}
+
+.popover-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+    background: white;
+}
+
+.popover-icons img {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.popover-icons button {
+    background: white;
+    border: 2px solid #7c7052;
+    padding: 0;
+}
+
+.popover-icon-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    background: white;
+    border-radius: 6px;
+    padding: 10px 14px;
+    color: #7c7052;
+    margin: 4px 0;
+    border: 2px solid #7c7052;
+}
+
+.popover-icon-link i {
+    font-size: 1.2rem;
+}
+
+.popover button:hover,
+.popover-icon-link:hover {
+    border: 2px solid #77d4b6;
+    color: #77d4b6;
+}
+
+.popover button:active,
+.popover-icon-link:active {
+    border: 2px solid #77d4b6;
+    color: #77d4b6;
+}
+
+.popover button,
+.popover-icon-link {
+    transition: all 0.3s ease;
+}

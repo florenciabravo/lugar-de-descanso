@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useFetch } from "../hook/admin/useFetch";
 import "../styles/CategoryFilterBar.css";
 
-export const CategoryFilterBar = ({ originalProducts, setFilteredProducts }) => {
+export const CategoryFilterBar = ({ baseProducts, filteredProducts, setFilteredProducts }) => {
 
     const { fetchData } = useFetch();
 
@@ -31,14 +31,14 @@ export const CategoryFilterBar = ({ originalProducts, setFilteredProducts }) => 
         sessionStorage.setItem("selectedCategories", JSON.stringify(selectedCategories));
 
         if (selectedCategories.length === 0) {
-            setFilteredProducts(originalProducts);
+            setFilteredProducts(baseProducts);
         } else {
-            const filtered = originalProducts.filter(product =>
-                selectedCategories.includes(product.category?.title)
+            const filtered = baseProducts.filter(product =>
+                selectedCategories.includes(product.categoryTitle)
             );
             setFilteredProducts(filtered);
         }
-    }, [selectedCategories, originalProducts, setFilteredProducts]);
+    }, [selectedCategories, baseProducts, setFilteredProducts]);
 
     const handleToggleCategory = (categoryTitle) => {
         setSelectedCategories(prev =>
@@ -66,25 +66,20 @@ export const CategoryFilterBar = ({ originalProducts, setFilteredProducts }) => 
                                 onChange={() => handleToggleCategory(cat.title)}
                             />
 
-
                             <div className="category-content">
                                 <img src={`http://localhost:8080${cat.imageUrl}`} alt={cat.title} className="category-image" />
                                 <span>{cat.title}</span>
                             </div>
-
 
                         </label>
                     ))}
                 </div>
             </div>
 
-
             <div className="filter-info">
                 <span>{selectedCategories.length > 0
-                    ? `Mostrando ${originalProducts.filter(product =>
-                        selectedCategories.includes(product.category?.title)
-                    ).length} productos filtrados`
-                    : `${originalProducts.length} productos disponibles`
+                    ? `Mostrando ${filteredProducts.length} productos filtrados`
+                    : `${filteredProducts.length} productos disponibles`
                 }</span>
 
                 {selectedCategories.length > 0 && (

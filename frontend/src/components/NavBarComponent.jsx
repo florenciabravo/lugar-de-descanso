@@ -1,16 +1,22 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import '../styles/NavBarComponent.css'
 
 export const NavBarComponent = () => {
     const { user, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const getInitials = (username) => {
         return username
             .split(' ')
             .map((n) => n[0].toUpperCase())
             .join('');
+    };
+
+    const handleLogout = () => {
+        logout();
+        navigate("/"); // Redirige a la página principal
     };
 
     return (
@@ -32,7 +38,12 @@ export const NavBarComponent = () => {
                                 <div className="user-nav">
                                     <div className="avatar mx-2">{getInitials(user.username)}</div>
                                     <span className="username me-3">{user.username}</span>
-                                    <button onClick={logout} className="buttons">Cerrar Sesión</button>
+
+                                    <NavLink to="/Favoritos" className="nav-link active">
+                                        <button type="button" className="buttons buttons-fav">❤️ Mis Favoritos</button>
+                                    </NavLink>
+
+                                    <button onClick={handleLogout} className="buttons">Cerrar Sesión</button>
                                 </div>
                             ) : (
                                 <>

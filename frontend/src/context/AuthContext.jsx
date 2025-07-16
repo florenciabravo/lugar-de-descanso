@@ -11,14 +11,14 @@ export const AuthProvider = ({ children }) => {
     const token = getToken();
     if (token) {
       const payload = JSON.parse(atob(token.split('.')[1]));
-      setUser({ username: payload.sub });
+      setUser({ id: payload.id, username: payload.sub });
     }
   }, []);
 
   const login = async (email, password) => {
     const result = await authLogin(email, password);
-    if (result?.username) {
-      setUser({ username: result.username });
+    if (result?.username && result?.id) {
+      setUser({ id: result.id, username: result.username });
       return true;
     }
     return false;

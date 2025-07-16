@@ -2,9 +2,11 @@ package com.lugardedescanso.controller;
 
 import com.lugardedescanso.entity.Category;
 import com.lugardedescanso.entity.Feature;
+import com.lugardedescanso.entity.Location;
 import com.lugardedescanso.entity.Product;
 import com.lugardedescanso.repository.CategoryRepository;
 import com.lugardedescanso.repository.FeatureRepository;
+import com.lugardedescanso.repository.LocationRepository;
 import com.lugardedescanso.repository.ProductRepository;
 import com.lugardedescanso.service.ProductService;
 import jakarta.transaction.Transactional;
@@ -47,12 +49,23 @@ class ProductControllerTest {
     @Autowired
     private FeatureRepository featureRepository;
 
+    @Autowired
+    private LocationRepository locationRepository;
+
     private Category createTestCategory() {
         Category category = new Category();
         category.setTitle("Categoria Test1");
         category.setDescription("Descripcion test1");
         category.setImageUrl("test1-category.jpg");
         return categoryRepository.save(category);
+    }
+
+    private Location createTestLocation() {
+        Location location = new Location();
+        location.setCity("Ciudad Test");
+        location.setState("Estado Test");
+        location.setCountry("País Test");
+        return locationRepository.save(location);
     }
 
     //Test 1: Agregar producto con imagen valida
@@ -102,8 +115,9 @@ class ProductControllerTest {
                 randomName,
                 "Producto Existente",
                 category.getId(),
-                List.of(),
-                List.of(dummyImage)
+                List.<Long>of(),
+                List.of(dummyImage),
+                createTestLocation().getId()
         );
 
         MockMultipartFile newImage = new MockMultipartFile(
@@ -167,6 +181,9 @@ class ProductControllerTest {
         product.setImageUrls(List.of("img1.jpg", "img2.jpg"));
         product.setCategory(category);
         product.setFeatures(new HashSet<>(List.of(feature1, feature2)));
+        product.setPolicies(new ArrayList<>());
+        product.setLocation(createTestLocation());
+        product.setReservations(new ArrayList<>());
         product = productRepository.save(product);
 
         mockMvc.perform(get("/products/" + product.getId()))
@@ -200,6 +217,9 @@ class ProductControllerTest {
         product1.setImageUrls(List.of("img1.jpg"));
         product1.setCategory(category);
         product1.setFeatures(new HashSet<>(List.of(feature1)));
+        product1.setPolicies(new ArrayList<>());
+        product1.setLocation(createTestLocation());
+        product1.setReservations(new ArrayList<>());
 
         Product product2 = new Product();
         product2.setName("Producto 2");
@@ -207,6 +227,9 @@ class ProductControllerTest {
         product2.setImageUrls(List.of("img2.jpg"));
         product2.setCategory(category);
         product2.setFeatures(new HashSet<>(List.of(feature2)));
+        product2.setPolicies(new ArrayList<>());
+        product2.setLocation(createTestLocation());
+        product2.setReservations(new ArrayList<>());
 
         productRepository.save(product1);
         productRepository.save(product2);
@@ -237,6 +260,9 @@ class ProductControllerTest {
         product.setImageUrls(List.of("test1.jpg", "test2.jpg"));
         product.setCategory(category);
         product.setFeatures(Set.of(feature));
+        product.setPolicies(new ArrayList<>());
+        product.setLocation(createTestLocation());
+        product.setReservations(new ArrayList<>());
 
         product = productRepository.save(product);
 

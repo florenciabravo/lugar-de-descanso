@@ -18,7 +18,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "91f18d943f5e8d0a5060da8c38812535ba9af4e3bfc0dd8b1a89e00a12242424";
+    private static final String SECRET_KEY = "91f18d943f5e8d0a5060da8c38812535ba9af4e3bfc0dd8b1a89e00a12fdx5x5";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -27,6 +27,7 @@ public class JwtService {
     public String genereToken(User user) {
         Map<String, Object> extraClaims = new HashMap<>();
         extraClaims.put("role", user.getRole().name()); // ejemplo: ADMIN
+        extraClaims.put("id", user.getId());
         return generateToken(extraClaims, user);
     }
 

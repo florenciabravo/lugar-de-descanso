@@ -10,4 +10,6 @@ public interface CategoryService {
     Category addCategory(String title, String description, MultipartFile imageFile) throws IOException;
 
     List<Category> getAllCategories();
+
+    void deleteCategory(Long id);
 }

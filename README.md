@@ -99,7 +99,7 @@ Una vez que hayas seguido estos pasos, podrás acceder a la aplicación en tu na
 
 ### ✅ Planificación y ejecución de pruebas funcionales
 
-Durante el Sprint 1 y 2 se realizó un proceso formal de validación funcional mediante:
+Durante el Sprint 1, 2 y 3 se realizó un proceso formal de validación funcional mediante:
 
 - [Plan de Casos de Prueba - Sprint 1](/docs/Plan-de-Casos-de-Prueba-Sprint1.pdf)
 
@@ -108,6 +108,10 @@ Durante el Sprint 1 y 2 se realizó un proceso formal de validación funcional m
 - [Plan de Casos de Prueba - Sprint 2](/docs/Plan-de-Casos-de-Prueba-Sprint2.pdf)
 
 - [Ejecución de Casos de Prueba - Sprint 2](/docs/Ejecucion-de-Casos-de-Prueba-Sprint2.pdf)
+
+- [Plan de Casos de Prueba - Sprint 3](/docs/Plan-de-Casos-de-Prueba-Sprint3.pdf)
+
+- [Ejecución de Casos de Prueba - Sprint 3](/docs/Ejecucion-de-Casos-de-Prueba-Sprint3.pdf)
 
 Los documentos detallan los escenarios validados manualmente en base a las historias de usuario y criterios de aceptación definidos.
 
@@ -170,6 +174,23 @@ Durante el Sprint 2 se implementaron las siguientes historias de usuario:
 - #21: Agregar nueva categoría  
 
 Cada funcionalidad fue integrada, probada y validada con sus respectivos casos de prueba funcionales y pruebas de integración.
+
+---
+
+### 🚀 Sprint 3 - Nuevas funcionalidades avanzadas
+
+Durante el Sprint 3 se implementaron las siguientes historias de usuario:
+
+- #22: Realizar búsqueda  
+- #23: Visualizar disponibilidad  
+- #24: Marcar como favorito
+- #25: Listar productos favoritos
+- #26: Ver bloque de políticas del producto
+- #27: Redes, Compartir productos
+- #28: Puntuar producto
+- #29: Eliminar categoría
+
+En este Sprint se priorizó mejorar la experiencia del usuario mediante la búsqueda avanzada, gestión de favoritos, visualización de políticas y la posibilidad de compartir productos en redes sociales, además de la funcionalidad de puntuación para enriquecer la evaluación de los hospedajes. 
 
 ---
 

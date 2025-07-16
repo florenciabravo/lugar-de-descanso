@@ -21,19 +21,20 @@ export const useFetch = () => {
             const options = {
                 method: method,
                 headers: {
-                    ...(bodyData instanceof FormData 
-                            ? {} 
-                            : {'Content-type': 'application/json; charset=UTF-8'}),
+                    ...(bodyData instanceof FormData
+                        ? {}
+                        : { 'Content-type': 'application/json; charset=UTF-8' }),
                     ...(token && { Authorization: `Bearer ${token}` }),
                 },
-                body: method == 'GET' || method == 'DELETE' 
-                    ? null 
-                    : bodyData instanceof FormData 
-                        ? bodyData 
+                body: method == 'GET' || method == 'DELETE'
+                    ? null
+                    : bodyData instanceof FormData
+                        ? bodyData
                         : JSON.stringify(bodyData),
             }
 
             const res = await fetch(url, options)
+
             const data = res.headers.get("Content-Type")?.includes("application/json")
                 ? await res.json()
                 : null;

@@ -1,0 +1,100 @@
+.calendar-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calendar-container .calendar-title {
+    margin-bottom: 0.5rem;
+    color: #7c7052;
+    font-size: 1.5rem;
+}
+
+/* Error visual */
+.calendar-error {
+    padding: 1rem;
+    background-color: #f8f9fA;
+    border: 1px solid #ff6b6b;
+    border-radius: 8px;
+    color: #7c7052;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 0.5rem; 
+}
+
+.button-retry {
+    padding: 0.4rem 1rem;
+    background-color: #77d4b6;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-retry:hover {
+    background-color: #5cbda2;
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+    .calendar-container {
+        padding: 0.8rem;
+        border-radius: 6px;
+        max-width: 100%;
+    }
+
+    .calendar-container .calendar-title {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .calendar-error {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+}
+
+.calendar-loading {
+    text-align: center;
+    color: white;
+    font-style: italic;
+}
+
+.day-content {
+    position: relative;
+    font-weight: 500;
+    color: #7c7052;
+    text-align: center;
+}
+
+/* Día reservado (tachado en marrón) */
+.booked-date {
+    color: #7c7052;
+    text-decoration: line-through;
+    text-decoration-thickness: 3px;
+    text-decoration-color: #7c7052;
+    pointer-events: none;
+}
+  
+/* Día actual (hoy) */
+.today-highlight {
+    background-color: #7c7052;
+    color: white;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}

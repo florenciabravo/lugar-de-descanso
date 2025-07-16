@@ -17,6 +17,9 @@ export const AddProductComponent = () => {
     const [features, setFeatures] = useState([]);
     const [selectedFeatures, setSelectedFeatures] = useState([]);
 
+    const [locations, setLocations] = useState([]);
+    const [selectedLocationId, setSelectedLocationId] = useState("");
+
     useEffect(() => {
         const fetchCategories = async () => {
             try {
@@ -43,6 +46,20 @@ export const AddProductComponent = () => {
         };
 
         fetchFeatures();
+    }, []);
+
+    useEffect(() => {
+        const fetchLocations = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/locations");
+                const data = await response.json();
+                setLocations(data);
+            } catch (error) {
+                console.error("Error al cargar ubicaciones", error);
+            }
+        };
+
+        fetchLocations();
     }, []);
 
     const handleFileChange = (e) => {
@@ -75,7 +92,7 @@ export const AddProductComponent = () => {
             return;
         }
 
-        if (!name || !description || !selectedCategoryId || selectedFeatures.length === 0) {
+        if (!name || !description || !selectedCategoryId || !selectedLocationId || selectedFeatures.length === 0) {
             alert("Todos los campos, incluyendo al menos una característica, son obligatorios");
             return;
         }
@@ -85,11 +102,12 @@ export const AddProductComponent = () => {
         formData.append('name', name);
         formData.append('description', description);
         formData.append('categoryId', selectedCategoryId);
+        formData.append('locationId', selectedLocationId);
         images.forEach((Image) => formData.append('images', Image));
         selectedFeatures.forEach(featureId => {
             formData.append("features", featureId);
         });
-       
+
         //Llamar al fetchData con POST
         const result = await fetchData("http://localhost:8080/products", "POST", formData);
 
@@ -100,6 +118,7 @@ export const AddProductComponent = () => {
             setName("");
             setDescription("");
             setSelectedCategoryId("");
+            setSelectedLocationId("");
             setImages([]);
             setSelectedFeatures([]);
             if (fileInputRef.current) {
@@ -156,6 +175,22 @@ export const AddProductComponent = () => {
                         {categories.map((category) => (
                             <option key={category.id} value={category.id}>
                                 {category.title}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
+                <div>
+                    <label>Ubicación:</label>
+                    <select
+                        value={selectedLocationId}
+                        onChange={(e) => setSelectedLocationId(e.target.value)}
+                        required
+                    >
+                        <option value="">Seleccionar ubicación</option>
+                        {locations.map((location) => (
+                            <option key={location.id} value={location.id}>
+                                {location.city}, {location.state}, {location.country}
                             </option>
                         ))}
                     </select>

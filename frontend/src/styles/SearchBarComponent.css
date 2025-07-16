@@ -4,7 +4,7 @@
     padding: 0px;
 }
 
-h3 {
+.search-title {
     color: white;
     text-align: center;
     padding-bottom: 5px;
@@ -13,29 +13,262 @@ h3 {
 
 form {
     text-align: center;
-    padding-bottom: 15px;
-}
-
-input {
-    padding: 5px 30px;
-    border-radius: 10px;
-    color: #7c7052;
-}
-
-input[type='text'] {
-    width: 300px;
+    padding-bottom: 1px;
 }
 
 .button-search {
     color: white;
     background-color: #77d4b6;
     border: none;
-    padding: 6px 40px;
     border-radius: 10px;
-    margin-left: 5px;
     transition: 0.5s all ease;
 }
 
 .button-search:hover {
     background-color: #8cc2a0;
 }
+
+.search-description {
+    color: #e4e4e4;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.calendar-toggle {
+    background-color: white;
+    color: #7c7052;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 5px 30px;
+    height: 40px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.calendar-toggle svg {
+    color: #7c7052;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.rdrCalendarWrapper {
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+.autocomplete-wrapper {
+    position: relative;
+}
+
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.suggestions-list li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.suggestions-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.no-match {
+    padding: 8px 12px;
+    color: #7c7052;
+    font-style: italic;
+    cursor: default;
+}
+
+/* Cambia el color del texto del calendario */
+.rdrCalendarWrapper,
+.rdrDateDisplay,
+.rdrMonthAndYearPickers,
+.rdrWeekDays,
+.rdrDays,
+.rdrDayNumber span,
+.rdrDayToday .rdrDayNumber span {
+    color: #7c7052;
+}
+
+.rdrMonthAndYearPickers select:hover {
+    background-color: #77d4b6;
+}
+
+.rdrSelected,
+.rdrInRange,
+.rdrStartEdge,
+.rdrEndEdge {
+    background-color: #7c7052;
+}
+
+.rdrDateDisplayWrapper {
+    background-color: #F8F9FA;
+}
+
+/* Texto del mes y año */
+.rdrMonthAndYearWrapper,
+.rdrMonthPicker select,
+.rdrYearPicker select {
+    color: #7c7052;
+    font-weight: bold;
+}
+
+/* Días de la semana */
+.rdrWeekDay {
+    color: #7c7052;
+    font-weight: bold;
+}
+
+/* Días del calendario */
+.rdrDayNumber span {
+    color: #7c7052;
+}
+
+/* Fecha seleccionada hoy */
+.rdrDayToday .rdrDayNumber span {
+    border: none !important;
+    /* quita borde azul si lo hay */
+    color: #7c7052;
+}
+
+.rdrDateDisplayItem input {
+    color: #7c7052;
+    border: 1px solid #7c7052;
+    font-weight: bold;
+}
+
+.rdrMonthName {
+    background-color: #77d4b6;
+    color: #7c7052;
+}
+
+/* Estilo para botones de navegación del calendario */
+.rdrNextPrevButton {
+    background-color: #F8F9FA !important;
+    border: none !important;
+    color: #7c7052 !important;
+}
+
+/* Ícono de las flechas (contenidas en <i>) */
+.rdrNextPrevButton i {
+    border-color: #7c7052 !important;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 4px;
+}
+
+/* Flecha derecha */
+.rdrNextButton i {
+    transform: rotate(-45deg);
+}
+
+/* Flecha izquierda */
+.rdrPprevButton i {
+    transform: rotate(135deg);
+}
+
+/* Hover */
+.rdrNextPrevButton:hover {
+    background-color: #77d4b6 !important;
+}
+
+.rdrNextPrevButton:hover i {
+    border-color: white !important;
+}
+
+/* Agrupa todos los campos y botones */
+.search-fields-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Aplica altura consistente a todos los elementos de búsqueda */
+.search-fields-container>* {
+    height: 40px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.input-with-icon {
+    position: relative;
+    width: 100%;
+    height: 40px;
+}
+
+.input-with-icon input {
+    width: 100%;
+    height: 100%;
+    padding-left: 35px !important;
+    padding-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #7c7052;
+    box-sizing: border-box;
+}
+
+.input-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7c7052;
+    font-size: 1.2rem;
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* En pantallas grandes, los pone en una sola línea */
+@media (min-width: 768px) {
+    .search-fields-container {
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+    }
+
+    .input-with-icon {
+        width: 250px;
+    }
+
+    .button-search {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+        font-size: 1rem;
+    }
+
+    .calendar-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        padding: 0 30px;
+    }
+}
+
