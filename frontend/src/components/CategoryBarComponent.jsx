@@ -14,7 +14,7 @@ export const CategoryBarComponent = ({ products, title }) => {
     const { currentPage, nextPage, prevPage, resetPage, setCurrentPage } = useCounter(storedPage, totalPages);
 
     const { user } = useContext(AuthContext);
-    const { isFavorite, toggleFavorite } = useFavorites();
+    const { isFavorite, toggleFavorite, favorites } = useFavorites(); // 🆕 incluimos favorites
 
     useEffect(() => {
         sessionStorage.setItem("currentPage", currentPage);
@@ -22,45 +22,47 @@ export const CategoryBarComponent = ({ products, title }) => {
         const end = start + itemsPerPage;
         setPaginatedProducts(products.slice(start, end));
         setTotalPages(Math.max(1, Math.ceil(products.length / itemsPerPage)));
-    }, [products, currentPage]);
+    }, [products, currentPage, favorites]); // 🆕 agregamos 'favorites' como dependencia
 
     return (
         <div className='category-section'>
             <h5>{title || "Buscar por tipo de alojamiento"}</h5>
 
             <div className="product-grid">
-                {paginatedProducts.map((product, index) => (
-                    <div key={product.id || `product-${index}`} className="product-card">
-                        <div className="product-image-container">
-                            <Link to={`/product/${product.id}`}>
-                                <img
-                                    src={`http://localhost:8080${product.imageUrls[0]}`}
-                                    alt={product.name}
-                                    className="product-image"
-                                />
-                            </Link>
+                {paginatedProducts.map((product, index) => {
+                    const favorite = isFavorite(product.id); // 🆕 evitamos múltiples llamadas
+                    return (
+                        <div key={product.id || `product-${index}`} className="product-card">
+                            <div className="product-image-container">
+                                <Link to={`/product/${product.id}`}>
+                                    <img
+                                        src={`http://localhost:8080${product.imageUrls[0]}`}
+                                        alt={product.name}
+                                        className="product-image"
+                                    />
+                                </Link>
 
-                            {user && (
-                                <button
-                                    className={`favorite-button ${isFavorite(product.id) ? 'favorited' : ''}`}
-                                    onClick={() => toggleFavorite(product.id)}
-                                    title={isFavorite(product.id) ? "Quitar de favoritos" : "Agregar a favoritos"}
-                                >
-                                    {isFavorite(product.id) ? "❤️" : "🤍"}
-                                </button>
-                            )}
+                                {user && (
+                                    <button
+                                        className={`favorite-button ${favorite ? 'favorited' : ''}`}
+                                        onClick={() => toggleFavorite(product.id)}
+                                        title={favorite ? "Quitar de favoritos" : "Agregar a favoritos"}
+                                    >
+                                        {favorite ? "❤️" : "🤍"}
+                                    </button>
+                                )}
+                            </div>
+
+                            <h3 className="product-name">{product.name}</h3>
+                            <p>{product.description}</p>
+
+                            <div className="product-rating">
+                                <span>⭐ {Number(product.averageRating).toFixed(1)}</span>{" "}
+                                <span>({product.totalReviews} valoraciones)</span>
+                            </div>
                         </div>
-
-                        <h3 className="product-name">{product.name}</h3>
-                        <p>{product.description}</p>
-
-                        <div className="product-rating">
-                            <span>⭐ {Number(product.averageRating).toFixed(1)}</span>{" "}
-                            <span>({product.totalReviews} valoraciones)</span>
-                        </div>
-
-                    </div>
-                ))}
+                    );
+                })}
             </div>
 
             {/* Controles de paginación */}
