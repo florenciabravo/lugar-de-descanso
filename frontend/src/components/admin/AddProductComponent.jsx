@@ -23,7 +23,7 @@ export const AddProductComponent = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await fetch("http://localhost:8080/categories");
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/categories`);
                 const data = await response.json();
                 setCategories(data);
             } catch (error) {
@@ -37,7 +37,7 @@ export const AddProductComponent = () => {
     useEffect(() => {
         const fetchFeatures = async () => {
             try {
-                const response = await fetch("http://localhost:8080/features");
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/features`);
                 const data = await response.json();
                 setFeatures(data);
             } catch (error) {
@@ -51,7 +51,7 @@ export const AddProductComponent = () => {
     useEffect(() => {
         const fetchLocations = async () => {
             try {
-                const response = await fetch("http://localhost:8080/locations");
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/locations`);
                 const data = await response.json();
                 setLocations(data);
             } catch (error) {
@@ -109,7 +109,7 @@ export const AddProductComponent = () => {
         });
 
         //Llamar al fetchData con POST
-        const result = await fetchData("http://localhost:8080/products", "POST", formData);
+        const result = await fetchData(`${import.meta.env.VITE_BACKEND_URL}/products`, "POST", formData);
 
         if (result && !result.error) {
             setSuccessMessage("Producto agregado exitosamente");

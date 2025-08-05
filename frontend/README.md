@@ -99,7 +99,7 @@ Una vez que hayas seguido estos pasos, podrás acceder a la aplicación en tu na
 
 ### ✅ Planificación y ejecución de pruebas funcionales
 
-Durante el Sprint 1, 2 y 3 se realizó un proceso formal de validación funcional mediante:
+Durante el Sprint 1, 2, 3 y 4 se realizó un proceso formal de validación funcional mediante:
 
 - [Plan de Casos de Prueba - Sprint 1](/docs/Plan-de-Casos-de-Prueba-Sprint1.pdf)
 
@@ -112,6 +112,10 @@ Durante el Sprint 1, 2 y 3 se realizó un proceso formal de validación funciona
 - [Plan de Casos de Prueba - Sprint 3](/docs/Plan-de-Casos-de-Prueba-Sprint3.pdf)
 
 - [Ejecución de Casos de Prueba - Sprint 3](/docs/Ejecucion-de-Casos-de-Prueba-Sprint3.pdf)
+
+- [Plan de Casos de Prueba - Sprint 4](/docs/Plan-de-Casos-de-Prueba-Sprint4.pdf)
+
+- [Ejecución de Casos de Prueba - Sprint 4](/docs/Ejecucion-de-Casos-de-Prueba-Sprint4.pdf)
 
 Los documentos detallan los escenarios validados manualmente en base a las historias de usuario y criterios de aceptación definidos.
 
@@ -194,9 +198,48 @@ En este Sprint se priorizó mejorar la experiencia del usuario mediante la búsq
 
 ---
 
+### 🚀 Sprint 4 - Funcionalidad de Reserva de Productos y comunicación con el anfitrión
+
+Durante el Sprint 4 se implementaron las siguientes historias de usuario:
+
+- #30: Reservas: Seleccionar fecha
+- #31: Reservas: Visualizar detalles
+- #32: Realizar reserva
+- #33: Acceder a historial
+- #34: WhatsApp: Iniciar chat
+- #35: Notificacion: Confirmar reserva por correo
+
+Este sprint consolidó el objetivo principal de la plataforma: permitir a los usuarios buscar, visualizar y reservar hospedajes de forma segura y comunicarse con el anfitrión. Las funcionalidades fueron testeadas con validaciones funcionales.
+
+---
+
 ## 🔗 Demo en vivo
 
 Próximamente en Netlify
+
+---
+
+## 📌 Backlog Técnico y Próximos Pasos
+
+El proyecto fue desarrollado en base a historias de usuario planificadas por sprints. Todas las funcionalidades definidas en cada historia han sido implementadas, validadas y testeadas.
+
+Actualmente se ha creado un **backlog técnico** con tareas de mejora continua, entre ellas:
+
+- Refactorización y optimización del código en frontend y backend.
+- Incorporación de más tests automatizados (unitarios y de integración).
+- Deploy automático con variables por entorno para frontend y backend.
+- Implementación de roles avanzados para usuarios y mejoras en seguridad.
+- Panel de usuario con gestión más detallada de reservas, favoritos y calificaciones.
+- Soporte multilenguaje e internacionalización de la interfaz.
+
+> 🛠️ El proyecto continuará evolucionando con foco en calidad, usabilidad y escalabilidad.
+
+---
+
+## 🙏 Agradecimientos
+
+Quiero agradecer especialmente a mis profesores y tutores de **Digital House** por su dedicación, guía y acompañamiento a lo largo de este proceso de formación.  
+Su apoyo fue clave para que este proyecto pudiera desarrollarse con compromiso, profundidad técnica y orientación profesional.
 
 ---
 

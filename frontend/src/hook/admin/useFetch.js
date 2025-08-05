@@ -35,17 +35,29 @@ export const useFetch = () => {
 
             const res = await fetch(url, options)
 
-            const data = res.headers.get("Content-Type")?.includes("application/json")
-                ? await res.json()
-                : null;
+            const contentType = res.headers.get("Content-Type");
+
+            let data = null;
+
+            if (contentType && contentType.includes("application/json")) {
+                data = await res.json();
+            } else if (res.status === 204) {
+                data = { success: true }; // para DELETE exitoso sin cuerpo
+            } else {
+                const text = await res.text();
+                console.warn("Respuesta inesperada:", text);
+                data = { raw: text }; // lo devolvemos igual para que no sea null
+            }
 
             if (!res.ok) {
-                throw new Error(data?.error || data?.message || "Ocurrio un error inesperadooo");
+                throw new Error(
+                        data?.error || data?.message || data?.raw || "Ocurrio un error inesperadooo");
             }
-            setState({ data, isLoading: false, error: null })
+            setState({ data, isLoading: false, error: null });
             return data;
         }
         catch (error) {
+            console.error("fetchData error:", error); // Log del error real
             setState({
                 data: null,
                 error: error.message,

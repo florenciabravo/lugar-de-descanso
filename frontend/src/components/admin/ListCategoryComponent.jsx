@@ -12,7 +12,7 @@ export const ListCategoryComponent = () => {
     }, []);
 
     const fetchCategories = async () => {
-        const result = await fetchData("http://localhost:8080/categories", "GET");
+        const result = await fetchData(`${import.meta.env.VITE_BACKEND_URL}/categories`, "GET");
         if (result && !result.error) {
             setCategories(result);
         }
@@ -25,7 +25,7 @@ export const ListCategoryComponent = () => {
         
         if (confirmDelete) {
             try {
-                const response = await fetch(`http://localhost:8080/categories/${id}`, {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/categories/${id}`, {
                     method: "DELETE",
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -76,7 +76,7 @@ export const ListCategoryComponent = () => {
                                 <td>{category.description}</td>
                                 <td>
                                     <img
-                                        src={`http://localhost:8080${category.imageUrl}`}
+                                        src={`${import.meta.env.VITE_BACKEND_URL}${category.imageUrl}`}
                                         alt={category.title}
                                         style={{ width: "48px", height: "48px", objectFit: "cover" }}
                                     />

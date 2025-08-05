@@ -11,7 +11,7 @@ export const CategoryFilterBar = ({ baseProducts, filteredProducts, setFilteredP
 
     useEffect(() => {
         const loadCategories = async () => {
-            const categoryData = await fetchData("http://localhost:8080/categories", "GET");
+            const categoryData = await fetchData(`${import.meta.env.VITE_BACKEND_URL}/categories`, "GET");
             if (Array.isArray(categoryData)) {
                 setCategories(categoryData);
             }
@@ -67,7 +67,7 @@ export const CategoryFilterBar = ({ baseProducts, filteredProducts, setFilteredP
                             />
 
                             <div className="category-content">
-                                <img src={`http://localhost:8080${cat.imageUrl}`} alt={cat.title} className="category-image" />
+                                <img src={`${import.meta.env.VITE_BACKEND_URL}${cat.imageUrl}`} alt={cat.title} className="category-image" />
                                 <span>{cat.title}</span>
                             </div>
 

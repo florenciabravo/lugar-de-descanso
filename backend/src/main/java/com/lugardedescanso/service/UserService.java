@@ -1,5 +1,6 @@
 package com.lugardedescanso.service;
 
+import com.lugardedescanso.dto.UserResponseDTO;
 import com.lugardedescanso.entity.Role;
 import com.lugardedescanso.entity.User;
 import com.lugardedescanso.repository.UserRepository;
@@ -30,5 +31,15 @@ public class UserService {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     }
+
+    public UserResponseDTO mapUserToDto(User user) {
+        return new UserResponseDTO(
+                user.getId(),
+                user.getFirstname(),
+                user.getLastname(),
+                user.getEmail()
+        );
+    }
+
 
 }

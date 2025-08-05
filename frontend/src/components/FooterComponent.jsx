@@ -1,4 +1,5 @@
 import logoLD from '../assets/LogoLD.png';
+import { Link } from "react-router-dom";
 import '../styles/FooterComponent.css'
 
 export const FooterComponent = () => {
@@ -7,6 +8,9 @@ export const FooterComponent = () => {
             <div className='footer__copyright'>
                 <img src={logoLD} alt="Logo Lugar de Descanso" className="footer__logo" />
                 <p > ©2025 Lugar de Descanso</p>
+                <Link to="/politica-privacidad" className="footer__privacy-link">
+                    Política de Privacidad
+                </Link>
             </div>
 
             <div className='footer__icons'>

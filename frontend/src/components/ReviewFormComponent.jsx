@@ -27,7 +27,7 @@ export const ReviewFormComponent = ({ productId, userId, onReviewAdded }) => {
       comment: comment
     });
 
-    const result = await fetchData(`http://localhost:8080/reviews?${params}`, "POST");
+    const result = await fetchData(`${import.meta.env.VITE_BACKEND_URL}/reviews?${params}`, "POST");
 
     if (!result.error) {
       setRating(0);

@@ -7,7 +7,7 @@ export const SharePopover = ({ product, onClose }) => {
     if (!product) return null;
 
     const shareUrl = `${window.location.origin}/product/${product.id}`;
-    const imageUrl = `http://localhost:8080${product.imageUrls?.[0] || ''}`;
+    const imageUrl = `${import.meta.env.VITE_BACKEND_URL}${product.imageUrls?.[0] || ''}`;
     const message = encodeURIComponent(customMessage || product.description);
 
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;

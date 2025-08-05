@@ -1,6 +1,51 @@
 .recommendation-section {
     background-color: #9eb48e;
-    padding-left: 20px; 
+    padding: 20px; 
     color: #7c7052;
     
+}
+
+.recommendation-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+}
+
+.recommendation-card {
+    min-width: 200px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    scroll-snap-align: start;
+    transition: transform 0.2s;
+}
+
+.recommendation-card:hover {
+    transform: scale(1.03);
+}
+
+.recommendation-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.recommendation-info {
+    padding: 10px;
+}
+
+.recommendation-info h6 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.recommendation-info p {
+    margin: 4px 0;
+    font-size: 0.9rem;
 }

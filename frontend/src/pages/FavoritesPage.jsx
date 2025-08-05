@@ -12,7 +12,7 @@ export const FavoritesPage = () => {
         const loadFavorites = async () => {
             const updated = await fetchFavorites();
             const ids = updated.map(f => f.productId);
-            const allProducts = await fetchData("http://localhost:8080/products", "GET");
+            const allProducts = await fetchData(`${import.meta.env.VITE_BACKEND_URL}/products`, "GET");
             const filtered = allProducts.filter(p => ids.includes(p.id));
             setFavoriteProducts(filtered);
         };

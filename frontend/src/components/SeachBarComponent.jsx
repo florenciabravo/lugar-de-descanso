@@ -25,7 +25,7 @@ export const SeachBarComponent = forwardRef((props, ref) => {
     const { data: locationData, fetchData: fetchLocations } = useFetch();
 
     useEffect(() => {
-        fetchLocations("http://localhost:8080/locations", "GET");
+        fetchLocations(`${import.meta.env.VITE_BACKEND_URL}/locations`, "GET");
     }, []);
 
     useEffect(() => {

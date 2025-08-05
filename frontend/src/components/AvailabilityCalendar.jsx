@@ -20,7 +20,7 @@ export const AvailabilityCalendar = ({ productId }) => {
     }, []);
 
     const loadDates = () => {
-        fetchData(`http://localhost:8080/reservations/booked-dates/${productId}`, "GET")
+        fetchData(`${import.meta.env.VITE_BACKEND_URL}/reservations/booked-dates/${productId}`, "GET")
             .then(result => {
                 if (!result?.error) setBookedDates(result);
             });

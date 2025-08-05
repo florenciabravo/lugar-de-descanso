@@ -27,13 +27,13 @@ export const EditFeatureComponent = () => {
 
     // Cargar datos de la característica
     useEffect(() => {
-        fetchFeature(`http://localhost:8080/features/${id}`, "GET");
+        fetchFeature(`${import.meta.env.VITE_BACKEND_URL}/features/${id}`, "GET");
     }, [id]);
 
     useEffect(() => {
         if (featureData) {
             setName(featureData.name);
-            setIconPreview(`http://localhost:8080${featureData.iconUrl}`);
+            setIconPreview(`${import.meta.env.VITE_BACKEND_URL}${featureData.iconUrl}`);
             setIconName(featureData.iconUrl.split("/").pop());
         }
     }, [featureData]);
@@ -59,7 +59,7 @@ export const EditFeatureComponent = () => {
         formData.append("name", name);
         if (icon) formData.append("icon", icon);
 
-        const response = await updateFeature(`http://localhost:8080/features/${id}`, "PUT", formData, true); // true indica multipart/form-data
+        const response = await updateFeature(`${import.meta.env.VITE_BACKEND_URL}/features/${id}`, "PUT", formData, true); // true indica multipart/form-data
 
         if (!response.error) {
             setSuccessMessage("Característica actualizada correctamente");

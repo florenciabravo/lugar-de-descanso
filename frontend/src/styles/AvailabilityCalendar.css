@@ -49,7 +49,7 @@
 /* Responsive */
 @media screen and (max-width: 480px) {
     .calendar-container {
-        padding: 0.8rem;
+        padding: 0rem;
         border-radius: 6px;
         max-width: 100%;
     }
@@ -90,11 +90,30 @@
 /* Día actual (hoy) */
 .today-highlight {
     background-color: #7c7052;
-    color: white;
+    color: white !important;
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Forzar responsividad del calendario de react-date-range */
+.calendar-container .rdrCalendarWrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.calendar-container .rdrMonth {
+    min-width: 320px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 480px) {
+    .calendar-container .rdrMonth {
+        min-width: 100%;
+    }
 }

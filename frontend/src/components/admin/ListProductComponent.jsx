@@ -12,14 +12,14 @@ export const ListProductComponent = () => {
   }, []);
 
   const fetchProducts = async () => {
-    const data = await fetchData(`http://localhost:8080/products`, "GET");
+    const data = await fetchData(`${import.meta.env.VITE_BACKEND_URL}/products`, "GET");
     if (data) setProducts(data);
   };
 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("¿Estás seguro de eliminar este producto?");
     if (confirmDelete) {
-      await fetchData(`http://localhost:8080/products/${id}`, "DELETE");
+      await fetchData(`${import.meta.env.VITE_BACKEND_URL}/products/${id}`, "DELETE");
       fetchProducts(); // Recargar la lista después de eliminar
     }
   };

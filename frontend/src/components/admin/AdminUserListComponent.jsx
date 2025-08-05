@@ -10,7 +10,7 @@ export const AdminUserListComponent = () => {
     }, []);
 
     const fetchUsers = async () => {
-        const result = await fetchData("http://localhost:8080/users", "GET");
+        const result = await fetchData(`${import.meta.env.VITE_BACKEND_URL}/users`, "GET");
         if (result && !result.error) {
             setUsers(result);
         }
@@ -24,7 +24,7 @@ export const AdminUserListComponent = () => {
 
         if (confirmChange) {
             const result = await fetchData(
-                `http://localhost:8080/users/${user.id}/role`,
+                `${import.meta.env.VITE_BACKEND_URL}/users/${user.id}/role`,
                 "PUT",
                 { role: newRole } 
             );

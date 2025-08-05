@@ -25,7 +25,7 @@ export const AddCategoryComponent = () => {
         formData.append("description", description);
         if (image) formData.append("image", image);
 
-        const result = await fetchData("http://localhost:8080/categories", "POST", formData);
+        const result = await fetchData(`${import.meta.env.VITE_BACKEND_URL}/categories`, "POST", formData);
 
         if (!result?.error) {
             alert("Categoría agregada correctamente");

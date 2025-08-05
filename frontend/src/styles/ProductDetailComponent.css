@@ -140,7 +140,6 @@
 }
 
 /* features */
-
 .product-features {
     margin-top: 2rem;
     padding: 1rem;
@@ -195,4 +194,24 @@
     border-bottom: 1px solid #ddd;
     margin-bottom: 1rem;
     padding-bottom: 1rem;
+}
+
+.calendar-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.calendar-button {
+    background-color: #77d4b6;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.calendar-button:hover {
+    background-color: #8cc2a0;
 }

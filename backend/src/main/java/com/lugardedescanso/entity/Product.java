@@ -52,4 +52,8 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "host_id")
+    private Host host;
 }

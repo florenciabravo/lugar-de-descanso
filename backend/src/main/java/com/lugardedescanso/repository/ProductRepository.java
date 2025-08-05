@@ -16,14 +16,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByLocation_CityIgnoreCase(String city);
 
     @Query("""
-                SELECT DISTINCT p FROM Product p 
-                LEFT JOIN p.reservations r 
-                WHERE (:city IS NULL OR LOWER(p.location.city) = LOWER(:city))
-                AND (
-                    (:checkIn IS NULL OR :checkOut IS NULL)
-                    OR r IS NULL
-                    OR (r.checkOutDate <= :checkIn OR r.checkInDate >= :checkOut)
-                )
+                 SELECT p FROM Product p
+                  WHERE (:city IS NULL OR LOWER(p.location.city) = LOWER(:city))
+                  AND (
+                      (:checkIn IS NULL OR :checkOut IS NULL)
+                      OR NOT EXISTS (
+                          SELECT 1 FROM Reservation r
+                          WHERE r.product = p
+                          AND r.checkInDate < :checkOut
+                          AND r.checkOutDate > :checkIn
+                      )
+                  )
             """)
     List<Product> findAvailableProducts(
             @Param("city") String city,

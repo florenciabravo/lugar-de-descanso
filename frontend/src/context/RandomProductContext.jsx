@@ -8,7 +8,7 @@ export const RandomProductProvider = ({ children }) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch("http://localhost:8080/products");
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/products`);
                 if (response.ok) {
                     const data = await response.json();
                     const shuffled = [...data].sort(() => 0.5 - Math.random());

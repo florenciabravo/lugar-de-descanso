@@ -43,6 +43,10 @@ export const NavBarComponent = () => {
                                         <button type="button" className="buttons buttons-fav">❤️ Mis Favoritos</button>
                                     </NavLink>
 
+                                    <NavLink to="/Mis-Reservas" className="nav-link active">
+                                        <button type="button" className="buttons">📅 Mis Reservas</button>
+                                    </NavLink>
+
                                     <button onClick={handleLogout} className="buttons">Cerrar Sesión</button>
                                 </div>
                             ) : (

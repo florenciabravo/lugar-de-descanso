@@ -1,0 +1,43 @@
+.reservation-success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 1rem;
+    background-color: #ffffff;
+}
+
+.reservation-success-card {
+    background-color: #F8F9FA;
+    border: 1px solid #7c7052;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.reservation-success-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.reservation-success-card p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.reservation-home-button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #77d4b6;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.reservation-home-button:hover {
+    background-color: #5cbda2;
+}

@@ -1,12 +1,12 @@
 .main-container {
-    margin: 1rem auto;
-    font-family: Arial, sans-serif;
-    color: #7c7052;
+  margin: 1rem auto;
+  font-family: Arial, sans-serif;
+  color: #7c7052;
 }
 
 .register-container {
-    background-color: #F8F9FA;
-    padding: 15px;
+  background-color: #F8F9FA;
+  padding: 15px;
 }
 
 input[type="text"],
@@ -23,22 +23,33 @@ input[type="password"] {
 }
 
 input::placeholder {
-    color: #7c7052;
+  color: #7c7052;
 }
 
 /*  resend email */
 .resend-button {
-    margin-top: 10px;
-    padding: 8px;
-    background-color: #7c7052;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .resend-button:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
-  }
-  
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #7c7052;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.resend-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.privacy-notice {
+  font-size: 0.85rem;
+  color: #7c7052;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.privacy-notice a {
+  color: #7c7052;
+  text-decoration: underline;
+}

@@ -57,6 +57,9 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.PUT, "/products/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/products/**").hasRole("ADMIN")
 
+                // Endpoints protegidos de users (solo usuarios autenticados)
+                .requestMatchers(HttpMethod.GET, "/users/me").authenticated()
+
                 // Endpoints protegidos de usuarios (solo ADMIN)
                 .requestMatchers(HttpMethod.GET, "/users/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/users/**").hasRole("ADMIN")
@@ -80,8 +83,8 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.PUT, "/locations/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/locations/**").hasRole("ADMIN")
 
-                //Endpoints protegido de reservarion
-                //.requestMatchers(HttpMethod.GET, "/reservations/user/**").authenticated()
+                // Endpoints protegidos de reservas (solo usuarios autenticados)
+                .requestMatchers(HttpMethod.POST, "/reservations/**").authenticated()
 
                 .anyRequest().authenticated()
                 .and()

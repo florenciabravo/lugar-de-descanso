@@ -23,7 +23,7 @@ export const AddFeatureComponent = () => {
         formData.append("name", name);
         formData.append("icon", icon);
 
-        const result = await fetchData("http://localhost:8080/features", "POST", formData);
+        const result = await fetchData(`${import.meta.env.VITE_BACKEND_URL}/features`, "POST", formData);
 
         if (!result?.error) {
             alert("Característica agregada correctamente");

@@ -1,18 +1,19 @@
-.navbar-brand, .navbar-toggler{
+.navbar-brand,
+.navbar-toggler {
     color: #7c7052;
 }
 
 .logo {
-    width: 100px;    
+    width: 100px;
 }
 
 .collapse.navbar-collapse {
-   justify-content: flex-end;
+    justify-content: flex-end;
 }
 
 .buttons {
-    border-radius: 10px; 
-    padding: 5px 40px;
+    border-radius: 10px;
+    padding: 5px 20px;
     border: 2px solid #77d4b6;
     color: #77d4b6;
     font-weight: bold;
@@ -56,13 +57,6 @@
 }
 
 @media (min-width: 768px) {
-    .buttons-fav {
-        margin-right: 5px;
-        margin-bottom: 0;
-    }
-}
-
-@media (min-width: 768px) {
     .user-nav {
         flex-direction: row;
         justify-content: flex-end;
@@ -78,5 +72,11 @@
     .user-nav .username {
         margin-right: 10px;
         margin-bottom: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .user-nav {
+        gap: 10px;
     }
 }

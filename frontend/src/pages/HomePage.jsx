@@ -33,9 +33,9 @@ export const HomePage = () => {
         if (checkIn) params.append('checkIn', checkIn);
         if (checkOut) params.append('checkOut', checkOut);
 
-        const url = `http://localhost:8080/products/search?${params.toString()}`;
+        const url = `${import.meta.env.VITE_BACKEND_URL}/products/search?${params.toString()}`;
 
-        fetchData( url,
+        fetchData(url,
             "GET"
         ).then(data => {
             if (Array.isArray(data)) {

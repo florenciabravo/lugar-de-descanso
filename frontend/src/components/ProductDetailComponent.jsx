@@ -6,8 +6,8 @@ import { AvailabilityCalendar } from "./AvailabilityCalendar";
 import { ProductPolicyBlock } from './ProductPolicyBlock';
 import { SharePopover } from './SharePopover';
 import { ReviewFormComponent } from "./ReviewFormComponent";
+import WhatsAppButton from "./WhatsAppButton";
 import { AuthContext } from "../context/AuthContext";
-
 import '../styles/ProductDetailComponent.css';
 
 export const ProductDetailComponent = () => {
@@ -27,24 +27,24 @@ export const ProductDetailComponent = () => {
 
     useEffect(() => {
         const fetchProduct = async () => {
-            await fetchProductData(`http://localhost:8080/products/${id}`, "GET");
+            await fetchProductData(`${import.meta.env.VITE_BACKEND_URL}/products/${id}`, "GET");
             setLoading(false);
         };
 
         const fetchReviews = async () => {
-            const res = await fetchReviewsData(`http://localhost:8080/reviews/product/${id}`, "GET");
+            const res = await fetchReviewsData(`${import.meta.env.VITE_BACKEND_URL}/reviews/product/${id}`, "GET");
             setReviews(Array.isArray(res) ? res : []);
         };
 
         const fetchAverageRating = async () => {
-            const res = await fetch(`http://localhost:8080/reviews/product/${id}/average`);
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/reviews/product/${id}/average`);
             const avg = await res.json();
             setAverageRating(avg || 0);
         };
 
         const checkIfUserCanReview = async () => {
             if (user) {
-                const reservations = await fetch(`http://localhost:8080/reservations/user/${user.id}`);
+                const reservations = await fetch(`${import.meta.env.VITE_BACKEND_URL}/reservations/user/${user.id}`);
                 const resJson = await reservations.json();
                 const hasPastReservation = resJson.some(r => {
                     return (
@@ -86,11 +86,11 @@ export const ProductDetailComponent = () => {
                 <>
                     <div className="image-gallery">
                         <div className="main-image">
-                            <img src={`http://localhost:8080${product.imageUrls[0]}`} alt="Imagen Principal" />
+                            <img src={`${import.meta.env.VITE_BACKEND_URL}${product.imageUrls[0]}`} alt="Imagen Principal" />
                         </div>
                         <div className="grid-images">
                             {product.imageUrls.slice(1, 5).map((image, index) => (
-                                <img key={index} src={`http://localhost:8080${image}`} alt={`Imagen ${index + 2}`} />
+                                <img key={index} src={`${import.meta.env.VITE_BACKEND_URL}${image}`} alt={`Imagen ${index + 2}`} />
                             ))}
                         </div>
                     </div>
@@ -115,7 +115,7 @@ export const ProductDetailComponent = () => {
                         {product.features.map((feature) => (
                             <li key={feature.id} className="feature-item">
                                 <img
-                                    src={`http://localhost:8080${feature.iconUrl}`}
+                                    src={`${import.meta.env.VITE_BACKEND_URL}${feature.iconUrl}`}
                                     alt={feature.name}
                                     className="feature-icon"
                                 />
@@ -128,6 +128,26 @@ export const ProductDetailComponent = () => {
 
             <section className="availability-section">
                 <AvailabilityCalendar productId={id} />
+
+                <div className="calendar-button-container">
+                    <button
+                        className="calendar-button"
+                        onClick={() => {
+                            if (!product?.host?.id) {
+                                alert("Este alojamiento aún no tiene un anfitrión asignado. No es posible reservarlo en este momento.");
+                                return;
+                            }
+                            if (user) {
+                                navigate(`/reservas/${id}`);
+                            } else {
+                                navigate(`/IniciarSesion?redirect=/reservas/${id}`);
+                            }
+                        }}
+                    >
+                        Reservar ahora
+                    </button>
+                </div>
+
             </section>
 
             {Array.isArray(product.policies) && product.policies.length > 0 && (
@@ -140,9 +160,9 @@ export const ProductDetailComponent = () => {
                     productId={id}
                     userId={user.id}
                     onReviewAdded={(newReview) => {
-                        fetchReviewsData(`http://localhost:8080/reviews/product/${id}`, "GET")
+                        fetchReviewsData(`${import.meta.env.VITE_BACKEND_URL}/reviews/product/${id}`, "GET")
                             .then((res) => setReviews(Array.isArray(res) ? res : []));
-                        fetch(`http://localhost:8080/reviews/product/${id}/average`)
+                        fetch(`${import.meta.env.VITE_BACKEND_URL}/reviews/product/${id}/average`)
                             .then(res => res.json())
                             .then(avg => setAverageRating(avg ?? 0));
                     }}
@@ -170,6 +190,14 @@ export const ProductDetailComponent = () => {
                 )}
             </section>
 
+            <WhatsAppButton
+                phoneNumber={product.host?.phoneNumber || null}
+                message={
+                    product.host
+                        ? `Hola ${product.host.name}, ¿cómo estás? Me interesa tu alojamiento "${product.name}" y tengo algunas consultas. ¿Podrás ayudarme?`
+                        : "¡Hola! Tengo una consulta sobre tu producto."
+                }
+            />
         </div>
     );
 };

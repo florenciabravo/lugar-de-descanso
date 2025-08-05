@@ -25,23 +25,23 @@ export const EditProductComponent = () => {
 
     // Obtener categorias
     useEffect(() => {
-        fetchCategories("http://localhost:8080/categories", "GET");
+        fetchCategories(`${import.meta.env.VITE_BACKEND_URL}/categories`, "GET");
     }, []);
 
     // Obtener caracteristicas
     useEffect(() => {
-        fetchFeatures("http://localhost:8080/features", "GET");
+        fetchFeatures(`${import.meta.env.VITE_BACKEND_URL}/features`, "GET");
     }, []);
 
     // Obtener ubicaciones
     useEffect(() => {
-        fetchLocations("http://localhost:8080/locations", "GET");
+        fetchLocations(`${import.meta.env.VITE_BACKEND_URL}/locations`, "GET");
     }, []);
 
     // Obtener producto cuando categorias y ubicaciones esten listas
     useEffect(() => {
         if (!loadingCategories && !loadingLocations && categories && locations) {
-            fetchProduct(`http://localhost:8080/products/${id}`, "GET");
+            fetchProduct(`${import.meta.env.VITE_BACKEND_URL}/products/${id}`, "GET");
         }
     }, [id, loadingCategories, loadingLocations, categories, locations]);
 
@@ -80,7 +80,7 @@ export const EditProductComponent = () => {
         images.forEach((image) => formData.append("images", image));
         selectedFeatures.forEach((featureId) => formData.append("features", featureId));
 
-        const response = await saveProduct(`http://localhost:8080/products/${id}`, "PUT", formData);
+        const response = await saveProduct(`${import.meta.env.VITE_BACKEND_URL}/products/${id}`, "PUT", formData);
 
         if (!response.error) {
             setSuccessMessage("Producto actualizado correctamente");

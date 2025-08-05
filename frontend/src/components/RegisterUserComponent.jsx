@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useFetch } from "../hook/admin/useFetch";
+import { Link } from "react-router-dom";
 import '../styles/RegisterUserComponent.css';
 
 export const RegisterUserComponent = () => {
@@ -38,7 +39,7 @@ export const RegisterUserComponent = () => {
     e.preventDefault();
     if (!validate()) return;
 
-    const response = await fetchData('http://localhost:8080/auth/register', 'POST', formData);
+    const response = await fetchData(`${import.meta.env.VITE_BACKEND_URL}/auth/register`, 'POST', formData);
 
     if (!response?.error) {
       setSuccessMessage('¡Registro exitoso! Hemos enviado un correo de confirmación a tu dirección. Por favor revisa tu bandeja de entrada o spam.');
@@ -72,7 +73,7 @@ export const RegisterUserComponent = () => {
       return;
     }
 
-    const response = await fetchData(`http://localhost:8080/auth/resend-confirmation?email=${lastEmailRegistered}`, 'POST');
+    const response = await fetchData(`${import.meta.env.VITE_BACKEND_URL}/auth/resend-confirmation?email=${lastEmailRegistered}`, 'POST');
 
     if (!response?.error) {
       setResendSuccess(`Correo de confirmación reenviado con éxitoa a ${lastEmailRegistered}.`);
@@ -143,6 +144,10 @@ export const RegisterUserComponent = () => {
             {resendError && <p className="error">{resendError}</p>}
           </>
         )}
+
+        <p className="privacy-notice">
+          Al registrarte, aceptás nuestra <Link to="/politica-privacidad">Política de Privacidad</Link>.
+        </p>
 
       </form>
     </div>

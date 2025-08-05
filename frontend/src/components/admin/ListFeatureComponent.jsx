@@ -12,7 +12,7 @@ export const ListFeatureComponent = () => {
     }, []);
 
     const fetchFeatures = async () => {
-        const result = await fetchData("http://localhost:8080/features", "GET");
+        const result = await fetchData(`${import.meta.env.VITE_BACKEND_URL}/features`, "GET");
         if (result && !result.error) {
             setFeatures(result);
         }
@@ -21,7 +21,7 @@ export const ListFeatureComponent = () => {
     const handleDelete = async (id) => {
         const confirmDelete = window.confirm("¿Estás seguro de eliminar esta característica?");
         if (confirmDelete) {
-            await fetchData(`http://localhost:8080/features/${id}`, "DELETE");
+            await fetchData(`${import.meta.env.VITE_BACKEND_URL}/features/${id}`, "DELETE");
             fetchFeatures(); // Recargar después de eliminar
         }
     };
@@ -55,7 +55,7 @@ export const ListFeatureComponent = () => {
                                 <td>{feature.name}</td>
                                 <td>
                                     <img
-                                        src={`http://localhost:8080${feature.iconUrl}`}
+                                        src={`${import.meta.env.VITE_BACKEND_URL}${feature.iconUrl}`}
                                         alt={feature.name}
                                         style={{ width: "32px", height: "32px", objectFit: "contain" }}
                                     />
